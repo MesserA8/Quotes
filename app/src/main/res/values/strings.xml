@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Quotes</string>
+    <string name="textview_category">TextView</string>
+</resources>
