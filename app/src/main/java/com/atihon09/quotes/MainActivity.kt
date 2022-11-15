@@ -1,10 +1,10 @@
 package com.atihon09.quotes
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 //import android.os.CountDownTimer
+import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.atihon09.quotes.adapters.CategoryAdapter
 import com.atihon09.quotes.adapters.ContentManager
