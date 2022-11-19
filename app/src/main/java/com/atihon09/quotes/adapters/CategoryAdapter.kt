@@ -12,8 +12,6 @@ import com.atihon09.quotes.databinding.CategoryItemBinding
 class CategoryAdapter(var listener: Listener) :
     ListAdapter<String, CategoryAdapter.Holder>(Comparator()) {
 
-    //val portraitList = ArrayList<PortraitModel>()
-
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = CategoryItemBinding.bind(view)
 

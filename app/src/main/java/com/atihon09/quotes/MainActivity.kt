@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
                 tvMessage.startAnimation(outAnimation)
                 tvName.startAnimation(outAnimation)
             }
-           // getResult()
         }
     }
 
@@ -89,7 +88,6 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
             tvName.startAnimation(outAnimation)
         }
         posM = pos
-        // getResult()
     }
 
     override fun onAnimationStart(animation: Animation?) {
