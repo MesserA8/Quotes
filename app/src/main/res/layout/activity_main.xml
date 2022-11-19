@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_quotes"
-    android:elevation="7dp"
     tools:context=".MainActivity">
 
     <com.google.android.gms.ads.AdView
