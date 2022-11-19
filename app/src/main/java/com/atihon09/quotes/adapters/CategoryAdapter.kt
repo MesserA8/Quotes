@@ -11,19 +11,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.atihon09.quotes.R
 import com.atihon09.quotes.databinding.CategoryItemBinding
 
-class CategoryAdapter(var listener: Listener) : ListAdapter<String, CategoryAdapter.Holder>(Comparator()) {
+class CategoryAdapter(var listener: Listener) :
+    ListAdapter<String, CategoryAdapter.Holder>(Comparator()) {
+
+    //val portraitList = ArrayList<PortraitModel>()
 
     class Holder(view: View) : RecyclerView.ViewHolder(view) {
-      private  val binding = CategoryItemBinding.bind(view)
-            fun setData(text: String, listener: Listener) = with(binding){
-               tvCatTitle.text = text
-                cardViewCat.backgroundTintList = ColorStateList
-                    .valueOf(Color.parseColor(ContentManager.colorList[adapterPosition]))
-                itemView.setOnClickListener { listener.onClick(adapterPosition) }
-            }
+        private val binding = CategoryItemBinding.bind(view)
+
+        fun setData(text: String, listener: Listener) = with(binding) {
+
+            tvCatTitle.text = text
+            imButton.setImageResource(ContentManager.btnImageList[adapterPosition])
+//            cardViewCat.backgroundTintList = ColorStateList
+//                .valueOf(Color.parseColor(ContentManager.colorList[adapterPosition]))
+            itemView.setOnClickListener { listener.onClick(adapterPosition) }
+        }
     }
 
-    class Comparator : DiffUtil.ItemCallback<String>(){
+    class Comparator : DiffUtil.ItemCallback<String>() {
         override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
@@ -34,7 +40,8 @@ class CategoryAdapter(var listener: Listener) : ListAdapter<String, CategoryAdap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return Holder(view)
     }
 
@@ -42,7 +49,8 @@ class CategoryAdapter(var listener: Listener) : ListAdapter<String, CategoryAdap
         holder.setData(getItem(position), listener)
     }
 
-    interface Listener{
+
+    interface Listener {
         fun onClick(pos: Int)
     }
 }

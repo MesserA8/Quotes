@@ -16,7 +16,6 @@ import kotlin.random.Random
 class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.AnimationListener {
     private lateinit var binding: ActivityMainBinding
     private var adapter: CategoryAdapter? = null
-   // private var timer: CountDownTimer? = null
     private var posM: Int = 0
     private lateinit var inAnimation: Animation
     private lateinit var outAnimation: Animation
@@ -66,23 +65,6 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
         super.onDestroy()
         binding.adView.destroy()
     }
-//
-//    private fun getResult() {
-//        var counter = 0
-//        timer?.cancel()
-//        timer = object : CountDownTimer(1600, 260) {
-//            override fun onTick(millisUntilFinished: Long) {
-//                counter++
-//                if (counter > 3) counter = 0
-//                binding.imageBg.setImageResource(MainConst.imageList[counter])
-//            }
-//
-//            override fun onFinish() {
-//                getMessage()
-//            }
-//
-//        }.start()
-//    }
 
     private fun initAdMob() {
         MobileAds.initialize(this)
