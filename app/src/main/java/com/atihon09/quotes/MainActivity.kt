@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
         binding.imageBg.setOnClickListener {
             binding.apply {
                 tvMessage.startAnimation(outAnimation)
-                tvName.startAnimation(outAnimation)
+                tvName //.startAnimation(outAnimation)
             }
         }
     }
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
 
     private fun getMessage() = with(binding) {
         tvMessage.startAnimation(inAnimation)
-        tvName.startAnimation(inAnimation)
+        tvName //.startAnimation(inAnimation)
         val currentArray = resources.getStringArray(MainConst.arrayList[posM])
         val message = currentArray[Random.nextInt(currentArray.size)]
         val messageList = message.split("|")
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
     override fun onClick(pos: Int) {
         binding.apply {
             tvMessage.startAnimation(outAnimation)
-            tvName.startAnimation(outAnimation)
+            tvName //.startAnimation(outAnimation)
         }
         posM = pos
     }
