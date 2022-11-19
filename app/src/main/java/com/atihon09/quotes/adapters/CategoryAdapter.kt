@@ -26,6 +26,7 @@ class CategoryAdapter(var listener: Listener) :
 //            cardViewCat.backgroundTintList = ColorStateList
 //                .valueOf(Color.parseColor(ContentManager.colorList[adapterPosition]))
             itemView.setOnClickListener { listener.onClick(adapterPosition) }
+            imButton.setOnClickListener { listener.onClick(adapterPosition) }
         }
     }
 
