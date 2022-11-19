@@ -11,21 +11,18 @@
         android:id="@+id/adView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
         app:adSize="BANNER"
         app:adUnitId="ca-app-pub-4282262624648834/8087969898"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcViewCat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_margin="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_margin="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,9 +31,9 @@
         android:id="@+id/cardView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="4dp"
+        android:layout_margin="2dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="15dp"
+        app:cardElevation="10dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +64,7 @@
                 android:padding="8dp"
                 android:textColor="@color/white"
                 android:textStyle="italic"
-                app:autoSizeMaxTextSize="30sp"
+                app:autoSizeMaxTextSize="28sp"
                 app:autoSizeMinTextSize="10sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@+id/tvName"
@@ -84,9 +81,9 @@
                 android:textColor="@color/white"
                 app:autoSizeMaxTextSize="30sp"
                 app:autoSizeTextType="uniform"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/imageBg"
                 app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
             <androidx.constraintlayout.widget.Guideline
