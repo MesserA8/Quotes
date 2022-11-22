@@ -61,7 +61,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:gravity="center"
                 android:hyphenationFrequency="normal"
-                android:padding="8dp"
+                android:padding="6dp"
                 android:textColor="@color/white"
                 android:textStyle="italic"
                 app:autoSizeMaxTextSize="28sp"
