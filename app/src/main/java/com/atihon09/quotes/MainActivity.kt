@@ -1,41 +1,44 @@
 package com.atihon09.quotes
 
-//import android.os.CountDownTimer
 import android.os.Bundle
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.atihon09.quotes.adapters.CategoryAdapter
 import com.atihon09.quotes.adapters.ContentManager
-import com.atihon09.quotes.adapters.MainConst
 import com.atihon09.quotes.databinding.ActivityMainBinding
-import com.google.android.gms.ads.*
-import kotlin.random.Random
+import com.atihon09.quotes.fragments.QuotesFragment
+import com.yandex.mobile.ads.banner.BannerAdSize
+import com.yandex.mobile.ads.common.AdRequest
+import com.yandex.mobile.ads.common.MobileAds
+import com.yandex.mobile.ads.instream.MobileInstreamAds
 
-class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.AnimationListener {
+class MainActivity : AppCompatActivity(), CategoryAdapter.Listener {
+
     private lateinit var binding: ActivityMainBinding
     private var adapter: CategoryAdapter? = null
-    private var posM: Int = 0
-    private lateinit var inAnimation: Animation
-    private lateinit var outAnimation: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        inAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_in)
-        outAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_out)
-        outAnimation.setAnimationListener(this)
-        initAdMob()
-        (application as AppMainState).showAdIfAvailable(this) {}
+        //yandex ads
+        MobileAds.initialize(this) {}
+        // Включаем предзагрузку рекламы до ее показа
+        MobileInstreamAds.setAdGroupPreloading(true)
         initRcView()
-        binding.imageBg.setOnClickListener {
-            binding.apply {
-                tvMessage.startAnimation(outAnimation)
-                tvName //.startAnimation(outAnimation)
-            }
-        }
+
+        binding.rcViewCat.set3DItem(true)
+        binding.rcViewCat.setAlpha(true)
+        binding.rcViewCat.setInfinite(true)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, QuotesFragment(), "quotesFragmentTag")
+            .commit()
+
+        binding.banner.setAdUnitId("R-M-2357258-1") //"demo-banner-yandex"/R-M-2357258-1
+        binding.banner.setAdSize(BannerAdSize.stickySize(this, 350))
+        val adRequest = AdRequest.Builder().build()
+        binding.banner.loadAd(adRequest)
     }
 
     private fun initRcView() = with(binding) {
@@ -49,56 +52,10 @@ class MainActivity : AppCompatActivity(), CategoryAdapter.Listener, Animation.An
         adapter?.submitList(ContentManager.list)
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.adView.resume()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        binding.adView.pause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        binding.adView.destroy()
-    }
-
-    private fun initAdMob() {
-        MobileAds.initialize(this)
-        val adRequest = AdRequest.Builder().build()
-        binding.adView.loadAd(adRequest)
-    }
-
-    private fun getMessage() = with(binding) {
-        tvMessage.startAnimation(inAnimation)
-        tvName //.startAnimation(inAnimation)
-        val currentArray = resources.getStringArray(MainConst.arrayList[posM])
-        val message = currentArray[Random.nextInt(currentArray.size)]
-        val messageList = message.split("|")
-        tvMessage.text = messageList[0]
-        tvName.text = messageList[1]
-        imageBg.setImageResource(MainConst.imageList[Random.nextInt(4)])
-    }
-
     override fun onClick(pos: Int) {
-        binding.apply {
-            tvMessage.startAnimation(outAnimation)
-            tvName //.startAnimation(outAnimation)
+        val fragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        if (fragment is QuotesFragment) {
+            fragment.onClick(pos)
         }
-        posM = pos
-    }
-
-    override fun onAnimationStart(animation: Animation?) {
-
-    }
-
-    override fun onAnimationEnd(animation: Animation?) {
-        getMessage()
-    }
-
-    override fun onAnimationRepeat(animation: Animation?) {
-
     }
 }
